@@ -1,0 +1,12 @@
+---
+title: "Demonstration of facilityepimath R package"
+author: Damon Toth
+institute: University of Utah
+format:
+  revealjs:
+    footer: "Damon Toth"
+    self-contained-math: true
+    theme: ["default"]
+    slide-number: c
+---
+
