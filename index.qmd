@@ -12,13 +12,34 @@ format:
 
 ## Healthcare Facility Transmission {.smaller}
 
-- Patient-to-patient transmission is important but difficult to document
-  - Inpatient with infection onset may have acquired organism before or after admission
-  - Extent to which transmission-interrupting interventions will reduce infections is unclear
+-   Patient-to-patient transmission is important but difficult to document
+    -   Inpatient with infection onset may have acquired organism before or after admission
+    -   Extent to which transmission-interrupting interventions will reduce infections is unclear
+-   **Transmission threshold** effects may be especially important
+    -   Can a single high-transmission facility sustain/amplify transmission by itself (within-faciliy $R_0>1$)?
+    -   Interventions that reduce $R_0<1$ can be highly impactful and cost-beneficial
+-   Mathematical models can help address these topics
 
-- **Transmission threshold** effects may be especially important
-  - Can a single high-transmission facility sustain/amplify transmission by itself
-($R_0>1$)?
-  - Interventions that reduce $R_0<1$ can be highly impactful and cost-beneficial
+## Differential equation model {.smaller}
 
-- Mathematical models can help address these topics
+General model for two "colonized" compartments $C_1$ and $C_2$ and two "susceptible" compartments $S_1$ and $S_2$
+
+$\frac{dS_1}{dt} = -(s_{21}+(a_{11}+a_{21})\alpha+\omega_1+h(t))S_1 + s{12}S_2 + r_{11}C_1 + r_{12}C_2$
+
+$\frac{dS_2}{dt} = s_{21}S_1 - (s_{12}+(a_{12}+a_{22})\alpha+\omega_2+h(t))S_2 + r_{21}C_1 + r_{22}C_2$
+
+$\frac{dC_1}{dt} = a_{11}\alpha S_1 + a_{12}\alpha S_2 - (c_{21}+r_{11}+r_{21}+\omega_3+h(t))C_1 + c_{12}C_2$
+
+$\frac{dC_2}{dt} = a_{21}\alpha S_1 + a_{22}\alpha S_2 + c_{21}C_1 - (c_{12}+r_{12}+r_{22}+\omega_4+h(t))C_2$
+
+The acquisition rate $\alpha$ in each equation: $\alpha = \beta_1 C_1 + \beta_2 C_2$
+
+Transition rates among the susceptible, colonized states: $s_{ij}$, $c_{ij}$
+
+Colonization clearance rates and $C$-to-$S$ transitions: $r_{ij}$
+
+Relative susceptibility and $S$-to-$C$ transitions: $a_{ij}$
+
+State-dependent removal (death or discharge) rates: $\omega_i$
+
+State-independent, time-of-stay-dependent removal hazard: $h(t)$
