@@ -6,9 +6,19 @@ format:
   revealjs:
     footer: "Damon Toth"
     self-contained-math: true
-    theme: ["default"]
+    theme: dark
     slide-number: c
 ---
-# Motivation {background-color="black"}
 
-## Motivation: Facility Transmission
+## Healthcare Facility Transmission {.smaller}
+
+- Patient-to-patient transmission is important but difficult to document
+  - Inpatient with infection onset may have acquired organism before or after admission
+  - Extent to which transmission-interrupting interventions will reduce infections is unclear
+
+- **Transmission threshold** effects may be especially important
+  - Can a single high-transmission facility sustain/amplify transmission by itself
+($R_0>1$)?
+  - Interventions that reduce $R_0<1$ can be highly impactful and cost-beneficial
+
+- Mathematical models can help address these topics
