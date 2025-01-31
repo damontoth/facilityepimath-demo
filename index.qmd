@@ -60,7 +60,7 @@ State-dependent removal (death or discharge) rates: $\omega_i$
 
 State-independent, time-of-stay-dependent removal hazard: $h(t)$
 
-## Model components {.smaller}
+## Model components for $R_0$ calculation {.smaller}
 
 Transitions between, and out of, the $S$ states in the absence of any colonized patients: $$
 S = \left(
@@ -81,3 +81,19 @@ A = \left(
     a_{21} & a_{22}
 \end{matrix}\right)
 $$
+
+## Model components for $R_0$ calculation {.smaller}
+
+Transmission rates from each colonized compartment: $$
+\beta = \left(
+\begin{matrix}
+    \beta_1 \\
+    \beta_2
+\end{matrix}\right)
+$$ Admission state distribution for susceptible compartments: $$
+\theta = \left(
+\begin{matrix}
+    \theta_1 \\
+    \theta_2
+\end{matrix}\right)
+$$ Moment-generating function associated with the time-of-stay-dependent removal hazard: $$ M(t) $$

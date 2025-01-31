@@ -187,8 +187,8 @@ Damon Toth
 <p>State-dependent removal (death or discharge) rates: <span class="math inline">\(\omega_i\)</span></p>
 <p>State-independent, time-of-stay-dependent removal hazard: <span class="math inline">\(h(t)\)</span></p>
 </section>
-<section id="model-components" class="slide level2 smaller">
-<h2>Model components</h2>
+<section id="model-components-for-r_0-calculation" class="slide level2 smaller">
+<h2>Model components for <span class="math inline">\(R_0\)</span> calculation</h2>
 <p>Transitions between, and out of, the <span class="math inline">\(S\)</span> states in the absence of any colonized patients: <span class="math display">\[
 S = \left(
 \begin{matrix}
@@ -208,6 +208,22 @@ A = \left(
     a_{21} &amp; a_{22}
 \end{matrix}\right)
 \]</span></p>
+</section>
+<section id="model-components-for-r_0-calculation-1" class="slide level2 smaller">
+<h2>Model components for <span class="math inline">\(R_0\)</span> calculation</h2>
+<p>Transmission rates from each colonized compartment: <span class="math display">\[
+\beta = \left(
+\begin{matrix}
+    \beta_1 \\
+    \beta_2
+\end{matrix}\right)
+\]</span> Admission state distribution for susceptible compartments: <span class="math display">\[
+\theta = \left(
+\begin{matrix}
+    \theta_1 \\
+    \theta_2
+\end{matrix}\right)
+\]</span> Moment-generating function associated with the time-of-stay-dependent removal hazard: <span class="math display">\[ M(t) \]</span></p>
 
 </section>
     </div>
