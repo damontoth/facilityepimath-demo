@@ -62,8 +62,7 @@ State-independent, time-of-stay-dependent removal hazard: $h(t)$
 
 ## Model components for $R_0$ calculation {.smaller}
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="62%"}
 Transitions between, and out of, the $S$ states in the absence of colonized patients: $$
 S = \left(
@@ -85,6 +84,7 @@ A = \left(
 \end{matrix}\right)
 $$
 :::
+
 ::: {.column width="38%"}
 Transmission rates from each colonized compartment: $$
 \beta = \left(
@@ -100,8 +100,22 @@ $$ Admission state distribution for susceptible compartments: $$
 \end{matrix}\right)
 $$ Moment-generating function associated with $h(t)$: $$ M(t) $$
 :::
+:::::
 
-::::
 ## $R_0$ formula {.smaller}
 
-$R_0=$
+$$
+R_0=\frac{\beta^T\int_0^\infty(1-F(t))e^{Ct}\int_0^te^{-C\tau}Ae^{S\tau}\theta\,d\tau\,dt}{1^T\int_0^\infty(1-F(t))e^{St}\theta\,dt}
+$$
+
+-    $e^{St}$ and $e^{Ct}$: matrix exponentials
+
+-   $F(t)$: cdf of the distribution with $h(t)$ as the hazard function: $h(t)=\frac{F^\prime(t)}{(1-F(t))}$
+
+    -   If no state-dependent removal ($\omega_i=0$), this is the length of stay distribution
+
+-   Integrals of product of matrix exponential and $(1-F(t))$ can be expressed using the moment-generating function $M(t)$ evaluated at the eigenvalues of the matrix
+
+    -   Formula can generate closed-form solutions when matrix exponentials can be expressed symbolically
+
+    -   We also derived numerical methods to calculate $R_0$ by this formula - encoded in the `facilityR0()` function of our `facilityepimath` R package...

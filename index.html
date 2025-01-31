@@ -228,7 +228,21 @@ A = \left(
 </section>
 <section id="r_0-formula" class="slide level2 smaller">
 <h2><span class="math inline">\(R_0\)</span> formula</h2>
-<p><span class="math inline">\(R_0=\)</span></p>
+<p><span class="math display">\[
+R_0=\frac{\beta^T\int_0^\infty(1-F(t))e^{Ct}\int_0^te^{-C\tau}Ae^{S\tau}\theta\,d\tau\,dt}{1^T\int_0^\infty(1-F(t))e^{St}\theta\,dt}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(e^{St}\)</span> and <span class="math inline">\(e^{Ct}\)</span>: matrix exponentials</p></li>
+<li><p><span class="math inline">\(F(t)\)</span>: cdf of the distribution with <span class="math inline">\(h(t)\)</span> as the hazard function: <span class="math inline">\(h(t)=\frac{F^\prime(t)}{(1-F(t))}\)</span></p>
+<ul>
+<li>If no state-dependent removal (<span class="math inline">\(\omega_i=0\)</span>), this is the length of stay distribution</li>
+</ul></li>
+<li><p>Integrals of product of matrix exponential and <span class="math inline">\((1-F(t))\)</span> can be expressed using the moment-generating function <span class="math inline">\(M(t)\)</span> evaluated at the eigenvalues of the matrix</p>
+<ul>
+<li><p>Formula can generate closed-form solutions when matrix exponentials can be expressed symbolically</p></li>
+<li><p>We also derived numerical methods to calculate <span class="math inline">\(R_0\)</span> by this formula - encoded in the <code>facilityR0()</code> function of our <code>facilityepimath</code> R package…</p></li>
+</ul></li>
+</ul>
 
 </section>
     </div>
