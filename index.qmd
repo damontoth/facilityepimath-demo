@@ -62,7 +62,10 @@ State-independent, time-of-stay-dependent removal hazard: $h(t)$
 
 ## Model components for $R_0$ calculation {.smaller}
 
-Transitions between, and out of, the $S$ states in the absence of any colonized patients: $$
+:::: {.columns}
+
+::: {.column width="62%"}
+Transitions between, and out of, the $S$ states in the absence of colonized patients: $$
 S = \left(
 \begin{matrix}
     -s_{21}-\omega_1 & s_{12} \\
@@ -71,8 +74,8 @@ S = \left(
 $$ Transitions between, and out of, the $C$ states: $$
 C = \left(
 \begin{matrix}
-    -c_{21}-r_{11}-r_{21}-\omega_3 & c_{12} \\
-    c_{21} & -c_{12}-r_{12}-r_{22}-\omega_4
+    -c_{21}-\sum r_{i1}-\omega_3 & c_{12} \\
+    c_{21} & -c_{12}-\sum r_{i2}-\omega_4
 \end{matrix}\right)
 $$ $S$-to-$C$ state transitions when an acquisition occurs: $$
 A = \left(
@@ -81,9 +84,8 @@ A = \left(
     a_{21} & a_{22}
 \end{matrix}\right)
 $$
-
-## Model components for $R_0$ calculation {.smaller}
-
+:::
+::: {.column width="38%"}
 Transmission rates from each colonized compartment: $$
 \beta = \left(
 \begin{matrix}
@@ -96,4 +98,10 @@ $$ Admission state distribution for susceptible compartments: $$
     \theta_1 \\
     \theta_2
 \end{matrix}\right)
-$$ Moment-generating function associated with the time-of-stay-dependent removal hazard: $$ M(t) $$
+$$ Moment-generating function associated with $h(t)$: $$ M(t) $$
+:::
+
+::::
+## $R_0$ formula {.smaller}
+
+$R_0=$

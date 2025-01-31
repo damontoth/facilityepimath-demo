@@ -189,7 +189,9 @@ Damon Toth
 </section>
 <section id="model-components-for-r_0-calculation" class="slide level2 smaller">
 <h2>Model components for <span class="math inline">\(R_0\)</span> calculation</h2>
-<p>Transitions between, and out of, the <span class="math inline">\(S\)</span> states in the absence of any colonized patients: <span class="math display">\[
+<div class="columns">
+<div class="column" style="width:62%;">
+<p>Transitions between, and out of, the <span class="math inline">\(S\)</span> states in the absence of colonized patients: <span class="math display">\[
 S = \left(
 \begin{matrix}
     -s_{21}-\omega_1 &amp; s_{12} \\
@@ -198,8 +200,8 @@ S = \left(
 \]</span> Transitions between, and out of, the <span class="math inline">\(C\)</span> states: <span class="math display">\[
 C = \left(
 \begin{matrix}
-    -c_{21}-r_{11}-r_{21}-\omega_3 &amp; c_{12} \\
-    c_{21} &amp; -c_{12}-r_{12}-r_{22}-\omega_4
+    -c_{21}-\sum r_{i1}-\omega_3 &amp; c_{12} \\
+    c_{21} &amp; -c_{12}-\sum r_{i2}-\omega_4
 \end{matrix}\right)
 \]</span> <span class="math inline">\(S\)</span>-to-<span class="math inline">\(C\)</span> state transitions when an acquisition occurs: <span class="math display">\[
 A = \left(
@@ -208,9 +210,7 @@ A = \left(
     a_{21} &amp; a_{22}
 \end{matrix}\right)
 \]</span></p>
-</section>
-<section id="model-components-for-r_0-calculation-1" class="slide level2 smaller">
-<h2>Model components for <span class="math inline">\(R_0\)</span> calculation</h2>
+</div><div class="column" style="width:38%;">
 <p>Transmission rates from each colonized compartment: <span class="math display">\[
 \beta = \left(
 \begin{matrix}
@@ -223,7 +223,12 @@ A = \left(
     \theta_1 \\
     \theta_2
 \end{matrix}\right)
-\]</span> Moment-generating function associated with the time-of-stay-dependent removal hazard: <span class="math display">\[ M(t) \]</span></p>
+\]</span> Moment-generating function associated with <span class="math inline">\(h(t)\)</span>: <span class="math display">\[ M(t) \]</span></p>
+</div></div>
+</section>
+<section id="r_0-formula" class="slide level2 smaller">
+<h2><span class="math inline">\(R_0\)</span> formula</h2>
+<p><span class="math inline">\(R_0=\)</span></p>
 
 </section>
     </div>
