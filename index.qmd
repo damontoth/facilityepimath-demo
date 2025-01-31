@@ -20,6 +20,22 @@ format:
     -   Interventions that reduce $R_0<1$ can be highly impactful and cost-beneficial
 -   Mathematical models can help address these topics
 
+## `facilityepimath` R package {.smaller}
+
+-   Provide functions for simulation-free calculations of useful quantities for a differential equation model of healthcare facility transmission
+
+    -   Facility basic reproduction number ($R_0$)
+
+    -   Model equilibrium at a given distribution of admission states
+
+-   Allow flexible user input of heterogenous patient states and length of stay
+
+    -   Heterogeneous susceptibility and transmissibility of states
+
+    -   State-dependent discharge / death rate option
+
+    -   Time-of-stay-dependent dischare/death hazard option
+
 ## Differential equation model {.smaller}
 
 General model for two "colonized" compartments $C_1$ and $C_2$ and two "susceptible" compartments $S_1$ and $S_2$
@@ -43,3 +59,25 @@ Relative susceptibility and $S$-to-$C$ transitions: $a_{ij}$
 State-dependent removal (death or discharge) rates: $\omega_i$
 
 State-independent, time-of-stay-dependent removal hazard: $h(t)$
+
+## Model components {.smaller}
+
+Transitions between, and out of, the $S$ states in the absence of any colonized patients: $$
+S = \left(
+\begin{matrix}
+    -s_{21}-\omega_1 & s_{12} \\
+    s_{21} & -s_{12}-\omega_2
+\end{matrix}\right)
+$$ Transitions between, and out of, the $C$ states: $$
+C = \left(
+\begin{matrix}
+    -c_{21}-r_{11}-r_{21}-\omega_3 & c_{12} \\
+    c_{21} & -c_{12}-r_{12}-r_{22}-\omega_4
+\end{matrix}\right)
+$$ $S$-to-$C$ state transitions when an acquisition occurs: $$
+A = \left(
+\begin{matrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+\end{matrix}\right)
+$$

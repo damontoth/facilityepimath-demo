@@ -157,6 +157,22 @@ Damon Toth
 <li>Mathematical models can help address these topics</li>
 </ul>
 </section>
+<section id="facilityepimath-r-package" class="slide level2 smaller">
+<h2><code>facilityepimath</code> R package</h2>
+<ul>
+<li><p>Provide functions for simulation-free calculations of useful quantities for a differential equation model of healthcare facility transmission</p>
+<ul>
+<li><p>Facility basic reproduction number (<span class="math inline">\(R_0\)</span>)</p></li>
+<li><p>Model equilibrium at a given distribution of admission states</p></li>
+</ul></li>
+<li><p>Allow flexible user input of heterogenous patient states and length of stay</p>
+<ul>
+<li><p>Heterogeneous susceptibility and transmissibility of states</p></li>
+<li><p>State-dependent discharge / death rate option</p></li>
+<li><p>Time-of-stay-dependent dischare/death hazard option</p></li>
+</ul></li>
+</ul>
+</section>
 <section id="differential-equation-model" class="slide level2 smaller">
 <h2>Differential equation model</h2>
 <p>General model for two “colonized” compartments <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> and two “susceptible” compartments <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span></p>
@@ -170,6 +186,28 @@ Damon Toth
 <p>Relative susceptibility and <span class="math inline">\(S\)</span>-to-<span class="math inline">\(C\)</span> transitions: <span class="math inline">\(a_{ij}\)</span></p>
 <p>State-dependent removal (death or discharge) rates: <span class="math inline">\(\omega_i\)</span></p>
 <p>State-independent, time-of-stay-dependent removal hazard: <span class="math inline">\(h(t)\)</span></p>
+</section>
+<section id="model-components" class="slide level2 smaller">
+<h2>Model components</h2>
+<p>Transitions between, and out of, the <span class="math inline">\(S\)</span> states in the absence of any colonized patients: <span class="math display">\[
+S = \left(
+\begin{matrix}
+    -s_{21}-\omega_1 &amp; s_{12} \\
+    s_{21} &amp; -s_{12}-\omega_2
+\end{matrix}\right)
+\]</span> Transitions between, and out of, the <span class="math inline">\(C\)</span> states: <span class="math display">\[
+C = \left(
+\begin{matrix}
+    -c_{21}-r_{11}-r_{21}-\omega_3 &amp; c_{12} \\
+    c_{21} &amp; -c_{12}-r_{12}-r_{22}-\omega_4
+\end{matrix}\right)
+\]</span> <span class="math inline">\(S\)</span>-to-<span class="math inline">\(C\)</span> state transitions when an acquisition occurs: <span class="math display">\[
+A = \left(
+\begin{matrix}
+    a_{11} &amp; a_{12} \\
+    a_{21} &amp; a_{22}
+\end{matrix}\right)
+\]</span></p>
 
 </section>
     </div>
