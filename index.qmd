@@ -143,11 +143,40 @@ $$
 -   $\delta_c$: progression to clinical detection/infection rate
 :::
 :::::
-Matrix representation:
-$$
+
+Matrix representation: $$
 S = 0, \quad
 C = \left(\begin{matrix} -\delta_c-\gamma & 0 \\ \delta_c & 0 \end{matrix}\right), \quad
 A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 \theta=1, \quad
 \beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon)\end{matrix}\right)
 $$
+
+## Example $R_0$ calculation in R {.smaller}
+
+```{r, echo=TRUE}
+library(facilityepimath)
+#Assumed values:
+gam <- 1/387 #clearance rate (per day)
+eps <- 0.5 #contact precaution effectiveness
+
+#Values fit to CRE data from long-term acute care hospitals (LTACH):
+bet <- 0.0510      #transmission rate (per day)
+deltaC <- 0.00845  #progression to clinical detection rate (per day)
+
+S <- 0
+C <- rbind(c(-deltaC-gam,0),c(deltaC,0))
+A <- rbind(1,0)
+transm <- bet*c(1,1-eps)
+initS <- 1
+
+#Length of stay as a mixed gamma distribution (fit to LTACH):
+px <- 0.580    #probability of following exponential distribution
+rx <- 0.0285   #exponential distribution rate parameter
+rg <- 0.179    #gamma distribution rate parameter
+k <- 5.74      #gamma distribution shape parameter
+
+mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg), shape = c(1,k), deriv)
+
+facilityR0(S, C, A, transm, initS, mgf)
+```
