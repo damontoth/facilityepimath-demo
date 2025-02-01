@@ -243,6 +243,36 @@ R_0=\frac{\beta^T\int_0^\infty(1-F(t))e^{Ct}\int_0^te^{-C\tau}Ae^{S\tau}\theta\,
 <li><p>We also derived numerical methods to calculate <span class="math inline">\(R_0\)</span> by this formula - encoded in the <code>facilityR0()</code> function of our <code>facilityepimath</code> R package…</p></li>
 </ul></li>
 </ul>
+</section>
+<section id="example" class="slide level2 smaller">
+<h2>Example</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><span class="math display">\[
+\frac{dS}{dt}=-(\alpha+h(t))S+\gamma C
+\]</span> <span class="math display">\[
+\frac{dC}{dt}=\alpha S-(\delta_c+\gamma+h(t))C
+\]</span><span class="math display">\[
+\frac{dC_{cd}}{dt}=\delta_cC-h(t)C_{cd}
+\]</span></p>
+</div><div class="column" style="width:55%;">
+<ul>
+<li><span class="math inline">\(S\)</span>: single susceptible state</li>
+<li><span class="math inline">\(C\)</span>: colonized, not detected</li>
+<li><span class="math inline">\(C_{cd}\)</span>: colonized, clinically detected</li>
+<li><span class="math inline">\(\alpha=\beta(C+(1-\epsilon)C_{cd})\)</span></li>
+<li><span class="math inline">\(\epsilon\)</span>: contact precaution effectiveness</li>
+<li><span class="math inline">\(\gamma\)</span>: clearance of colonization rate</li>
+<li><span class="math inline">\(\delta_c\)</span>: progression to clinical detection/infection rate</li>
+</ul>
+</div></div>
+<p>Matrix representation: <span class="math display">\[
+S = 0, \quad
+C = \left(\begin{matrix} -\delta_c-\gamma &amp; 0 \\ \delta_c &amp; 0 \end{matrix}\right), \quad
+A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
+\theta=1, \quad
+\beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon)\end{matrix}\right)
+\]</span></p>
 
 </section>
     </div>

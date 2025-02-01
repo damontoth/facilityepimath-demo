@@ -108,7 +108,7 @@ $$
 R_0=\frac{\beta^T\int_0^\infty(1-F(t))e^{Ct}\int_0^te^{-C\tau}Ae^{S\tau}\theta\,d\tau\,dt}{1^T\int_0^\infty(1-F(t))e^{St}\theta\,dt}
 $$
 
--    $e^{St}$ and $e^{Ct}$: matrix exponentials
+-   $e^{St}$ and $e^{Ct}$: matrix exponentials
 
 -   $F(t)$: cdf of the distribution with $h(t)$ as the hazard function: $h(t)=\frac{F^\prime(t)}{(1-F(t))}$
 
@@ -119,3 +119,35 @@ $$
     -   Formula can generate closed-form solutions when matrix exponentials can be expressed symbolically
 
     -   We also derived numerical methods to calculate $R_0$ by this formula - encoded in the `facilityR0()` function of our `facilityepimath` R package...
+
+## Example {.smaller}
+
+::::: columns
+::: {.column width="45%"}
+$$
+\frac{dS}{dt}=-(\alpha+h(t))S+\gamma C
+$$ $$
+\frac{dC}{dt}=\alpha S-(\delta_c+\gamma+h(t))C
+$$$$
+\frac{dC_{cd}}{dt}=\delta_cC-h(t)C_{cd}
+$$
+:::
+
+::: {.column width="55%"}
+-   $S$: single susceptible state
+-   $C$: colonized, not detected
+-   $C_{cd}$: colonized, clinically detected
+-   $\alpha=\beta(C+(1-\epsilon)C_{cd})$
+-   $\epsilon$: contact precaution effectiveness
+-   $\gamma$: clearance of colonization rate
+-   $\delta_c$: progression to clinical detection/infection rate
+:::
+:::::
+Matrix representation:
+$$
+S = 0, \quad
+C = \left(\begin{matrix} -\delta_c-\gamma & 0 \\ \delta_c & 0 \end{matrix}\right), \quad
+A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
+\theta=1, \quad
+\beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon)\end{matrix}\right)
+$$
