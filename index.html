@@ -371,8 +371,8 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 </div>
 </div>
 </section>
-<section id="intervention-model" class="slide level2 smaller">
-<h2>Intervention model</h2>
+<section id="intervention-model-seek-and-decolonize" class="slide level2 smaller">
+<h2>Intervention model: seek and decolonize</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><img data-src="fig/interventionModelCartoon.png"></p>
@@ -406,6 +406,34 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
 \theta=\left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 \beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon) \\ \beta(1-\epsilon) \end{matrix}\right) \]</span></p>
 </div>
+</section>
+<section id="intervention-model-reduce-length-of-stay" class="slide level2">
+<h2>Intervention model: reduce length of stay</h2>
+<ul>
+<li>LTACH length of stay (LOS) is a 58/42 mixture of patients following
+<ul>
+<li>Exponential distribution: mean 35 days, standard deviation 35 days</li>
+<li>Gamma distribution: mean 32 days, standard deviation 13 days</li>
+</ul></li>
+<li>Mean LOS of ~34 days could be reduced while retaining LTACH status (&gt;25 day mean req)</li>
+<li>Does it matter (for <span class="math inline">\(R_0\)</span>) which group(s) are targeted for LOS reduction?
+<ul>
+<li>Method 1: increase discharge rate of all patients</li>
+<li>Method 2: increase discharge rate of high-variance patients</li>
+<li>Method 3: increase discharge rate of low-variance patients</li>
+<li>Method 4: decrease fraction of high-variance patients</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span><span class="sc">-</span>px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>,k), deriv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="intervention-model-reduce-length-of-stay-1" class="slide level2 smaller">
+<h2>Intervention model: reduce length of stay</h2>
+
+<img data-src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="intervention-model-reduce-length-of-stay-2" class="slide level2">
+<h2>Intervention model: reduce length of stay</h2>
 
 </section>
     </div>
