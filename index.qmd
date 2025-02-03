@@ -6,7 +6,7 @@ format:
   revealjs:
     footer: "Damon Toth"
     self-contained-math: true
-    theme: dark
+    theme: simple
     slide-number: c
 ---
 
@@ -110,7 +110,7 @@ $$
 
 -   $e^{St}$ and $e^{Ct}$: matrix exponentials
 
--   $F(t)$: cdf of the distribution with $h(t)$ as the hazard function: $h(t)=\frac{F^\prime(t)}{(1-F(t))}$
+-   $F(t)$: cdf of the distribution with $h(t)$ as the hazard function: $h(t)=\frac{F^\prime(t)}{1-F(t)}$
 
     -   If no state-dependent removal ($\omega_i=0$), this is the length of stay distribution
 
@@ -180,3 +180,40 @@ mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg
 
 facilityR0(S, C, A, transm, initS, mgf)
 ```
+
+## Intervention model {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+![](fig/interventionModelCartoon.png)
+:::
+
+::: {.column width="50%"}
+```{r, echo=TRUE}
+#Intervention parameters:
+deltaS <- 1/28  #surveillance detection rate / day
+gamD <- 1/10    #clearance rate / day from 
+                #decolonizing drug treatment
+
+S <- rbind(c(0,0),c(0,0))
+C <- rbind(c(-deltaS-deltaC-gam,0,0),
+           c(deltaS,-deltaC-gamD,0),
+           c(deltaC,deltaC,0))
+A <- rbind(c(1,0),c(0,1-eps),c(0,0))
+transm <- bet*c(1,1-eps,1-eps)
+initS <- c(1,0)
+
+facilityR0(S, C, A, transm, initS, mgf)
+```
+:::
+:::::
+
+::: {style="font-size: 65%;"}
+$$ S = \left(\begin{matrix} 0 & 0 \\ 0 & 0\end{matrix}\right), \quad
+C = \left(\begin{matrix} -\delta_s-\delta_c-\gamma & 0 & 0 \\ 
+  \delta_s & -\delta_c-\gamma_d & 0 \\
+  \delta_c & \delta_c & 0\end{matrix}\right), \quad
+A = \left(\begin{matrix} 1 & 0 \\ 0 & 1-\epsilon \\ 0 & 0 \end{matrix}\right), \quad
+\theta=\left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
+\beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon) \\ \beta(1-\epsilon) \end{matrix}\right) $$
+:::
