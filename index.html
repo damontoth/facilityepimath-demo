@@ -445,23 +445,23 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
 <section id="intervention-model-reduce-length-of-stay" class="slide level2 smaller">
 <h2>Intervention model: reduce length of stay</h2>
 <ul>
-<li>LTACH length of stay (LOS) is a 58/42 mixture of patients following
+<li><p>LTACH length of stay (LOS) is a 58/42 mixture of patients following</p>
 <ul>
 <li>Exponential distribution: mean 35 days, standard deviation 35 days</li>
 <li>Gamma distribution: mean 32 days, standard deviation 13 days</li>
 </ul></li>
-<li>Mean LOS of ~34 days could be reduced while retaining LTACH status (&gt;25 day mean req)</li>
-<li>Does it matter (for <span class="math inline">\(R_0\)</span>) which group(s) are targeted for LOS reduction?
+<li><p>Mean LOS of ~34 days could be reduced while retaining LTACH status (&gt;25 day mean req)</p></li>
+<li><p>Does it matter (for <span class="math inline">\(R_0\)</span>) which group(s) are targeted for LOS reduction?</p>
 <ul>
 <li>Method 1: increase discharge rate of all patients</li>
 <li>Method 2: increase discharge rate of high-variance patients</li>
 <li>Method 3: increase discharge rate of low-variance patients</li>
 <li>Method 4: decrease fraction of high-variance patients</li>
-</ul></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span><span class="sc">-</span>px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>,k), deriv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+</div></li>
+</ul>
 </section>
 <section id="intervention-model-reduce-length-of-stay-1" class="slide level2">
 <h2>Intervention model: reduce length of stay</h2>
@@ -470,8 +470,31 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
 <section id="which-los-statistics-correlate-with-r_0" class="slide level2">
 <h2>Which LOS statistics correlate with <span class="math inline">\(R_0\)</span>?</h2>
 
-
 <img data-src="index_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="summary" class="slide level2 smaller">
+<h2>Summary</h2>
+<ul>
+<li><p><code>facilityepimath</code> calculates <span class="math inline">\(R_0\)</span> and model equilibrium for facility models</p>
+<ul>
+<li><p>Represent heterogeneous, dynamic susceptibility and transmissibility</p>
+<ul>
+<li>Including intervention-induced states (surveillance, decolonization, etc.)</li>
+</ul></li>
+<li><p>Represent realistic, complicated length of stay distributions</p>
+<ul>
+<li>Details of distribution matter in unexpected ways</li>
+</ul></li>
+</ul></li>
+<li><p>Conclusions for CRE in long-term acute care hospitals</p>
+<ul>
+<li><p><span class="math inline">\(R_0&gt;1\)</span> for a single stay is a realistic possibility</p></li>
+<li><p>Mid-stay surveillance for carriers can reduce <span class="math inline">\(R_0&lt;1\)</span></p></li>
+<li><p>Decolonization could greatly lower the surveillance resources needed</p></li>
+<li><p>Length of stay efforts should emphasize both mean and variance reduction</p></li>
+</ul></li>
+</ul>
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">

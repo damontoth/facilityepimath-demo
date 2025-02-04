@@ -181,7 +181,8 @@ mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg
 
 facilityR0(S, C, A, transm, initS, mgf)
 ```
-## Consequences of $R_0$>1: equilibrium calc {.smaller}
+
+## Consequences of $R_0$\>1: equilibrium calc {.smaller}
 
 ```{r, echo=TRUE}
 R <- cbind(gam,0)
@@ -243,20 +244,26 @@ A = \left(\begin{matrix} 1 & 0 \\ 0 & 1-\epsilon \\ 0 & 0 \end{matrix}\right), \
 \beta=\left(\begin{matrix} \beta \\ \beta(1-\epsilon) \\ \beta(1-\epsilon) \end{matrix}\right) $$
 :::
 
-## Intervention model: reduce length of stay  {.smaller}
+## Intervention model: reduce length of stay {.smaller}
 
 -   LTACH length of stay (LOS) is a 58/42 mixture of patients following
+
     -   Exponential distribution: mean 35 days, standard deviation 35 days
     -   Gamma distribution: mean 32 days, standard deviation 13 days
+
 -   Mean LOS of \~34 days could be reduced while retaining LTACH status (\>25 day mean req)
+
 -   Does it matter (for $R_0$) which group(s) are targeted for LOS reduction?
+
     -   Method 1: increase discharge rate of all patients
     -   Method 2: increase discharge rate of high-variance patients
     -   Method 3: increase discharge rate of low-variance patients
     -   Method 4: decrease fraction of high-variance patients
-```{r, echo=TRUE}
-mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg), shape = c(1,k), deriv)
-```
+
+    ```{r, echo=TRUE}
+    mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg), shape = c(1,k), deriv)
+    ```
+
 ## Intervention model: reduce length of stay
 
 ```{r}
@@ -320,6 +327,7 @@ doPlot(R0rx,murx,'Increase discharge rate of high-variance patients')
 doPlot(R0rg,murg,'Increase discharge rate of low-variance patients')
 doPlot(R0px,mupx,'Decrease fraction of high-variance patients')
 ```
+
 ## Which LOS statistics correlate with $R_0$?
 
 ```{r}
@@ -358,4 +366,25 @@ randPlot(sqrt(sigsqRand), 'LOS standard deviation')
 randPlot(sigsqRand/muRand, 'LOS variance to mean ratio (VMR)')
 randPlot(muRand + sigsqRand/muRand, 'LOS mean plus VMR')
 ```
+
 ## Summary {.smaller}
+
+-   `facilityepimath` calculates $R_0$ and model equilibrium for facility models
+
+    -   Represent heterogeneous, dynamic susceptibility and transmissibility
+
+        -   Including intervention-induced states (surveillance, decolonization, etc.)
+
+    -   Represent realistic, complicated length of stay distributions
+
+        -   Details of distribution matter in unexpected ways
+
+-   Conclusions for CRE in long-term acute care hospitals
+
+    -   $R_0>1$ for a single stay is a realistic possibility
+
+    -   Mid-stay surveillance for carriers can reduce $R_0<1$
+
+    -   Decolonization could greatly lower the surveillance resources needed
+
+    -   Length of stay efforts should emphasize both mean and variance reduction
