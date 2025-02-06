@@ -35,7 +35,7 @@ format:
 
     -   State-dependent discharge / death rate option
 
-    -   Time-of-stay-dependent dischare/death hazard option
+    -   Time-of-stay-dependent discharge / death hazard option
 
 ## Differential equation model {.smaller}
 
