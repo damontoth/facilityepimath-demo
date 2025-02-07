@@ -370,8 +370,9 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 </div>
 </div>
 </section>
-<section id="consequences-of-r_01-equilibrium-calc" class="slide level2 smaller">
-<h2>Consequences of <span class="math inline">\(R_0\)</span>&gt;1: equilibrium calc</h2>
+<section id="equilibrium-calculation-facilityeq" class="slide level2 smaller">
+<h2>Equilibrium calculation: <code>facilityeq()</code></h2>
+<p>Same inputs as <code>facilityR0()</code>, plus recovery matrix <span class="math inline">\(R=(\gamma,0)\)</span>, and <code>init</code> vector includes <span class="math inline">\(C\)</span> states (importation rate)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(gam,<span class="dv">0</span>)</span>
 <span id="cb3-2"><a href=""></a>getEquilibriumFacilityPrevalence <span class="ot">&lt;-</span> <span class="cf">function</span>(importationRate){</span>
@@ -403,6 +404,7 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 <pre><code>[1] 0.1967067</code></pre>
 </div>
 </div>
+<p>Consequence of <span class="math inline">\(R_0&gt;1\)</span>: high facility prevalence even when importation is infrequent</p>
 </section>
 <section id="intervention-model-seek-and-decolonize" class="slide level2 smaller">
 <h2>Intervention model: seek and decolonize</h2>

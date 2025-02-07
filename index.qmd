@@ -178,7 +178,9 @@ mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg
 facilityR0(S, C, A, transm, initS, mgf)
 ```
 
-## Consequences of $R_0$\>1: equilibrium calc {.smaller}
+## Equilibrium calculation: `facilityeq()` {.smaller}
+
+Same inputs as `facilityR0()`, plus recovery matrix $R=(\gamma,0)$, and `init` vector includes $C$ states (importation rate)
 
 ```{r, echo=TRUE}
 R <- cbind(gam,0)
@@ -202,6 +204,8 @@ getEquilibriumFacilityPrevalence(0.01) #1% importation
 ```{r, echo=TRUE}
 getEquilibriumFacilityPrevalence(0.001) #0.1% importation
 ```
+
+Consequence of $R_0>1$: high facility prevalence even when importation is infrequent
 
 ## Intervention model: seek and decolonize {.smaller}
 
