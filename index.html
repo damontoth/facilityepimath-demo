@@ -448,13 +448,13 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
 <li>Exponential distribution: mean 35 days, standard deviation 35 days</li>
 <li>Gamma distribution: mean 32 days, standard deviation 13 days</li>
 </ul></li>
-<li><p>Mean LOS of ~34 days could be reduced while retaining LTACH status (&gt;25 day mean req)</p></li>
+<li><p>Mean LOS of ~34 days could be reduced while retaining LTACH status (&gt;25 d)</p></li>
 <li><p>Does it matter (for <span class="math inline">\(R_0\)</span>) which group(s) are targeted for LOS reduction?</p>
 <ul>
-<li>Method 1: increase discharge rate of all patients</li>
-<li>Method 2: increase discharge rate of high-variance patients</li>
-<li>Method 3: increase discharge rate of low-variance patients</li>
-<li>Method 4: decrease fraction of high-variance patients</li>
+<li>Method 1: increase discharge rate of all patients (<code>rx</code> and <code>rg</code>)</li>
+<li>Method 2: increase discharge rate of high-variance patients (<code>rx</code>)</li>
+<li>Method 3: increase discharge rate of low-variance patients (<code>rg</code>)</li>
+<li>Method 4: decrease fraction of high-variance patients (<code>px</code>)</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span><span class="sc">-</span>px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>,k), deriv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,7 +496,7 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Damon Toth</p>
+<p>Damon Toth - https://damontoth.github.io/facilityepimath-demo/</p>
 </div>
 </div></div>
 
