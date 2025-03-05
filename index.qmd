@@ -5,7 +5,7 @@ author: Damon Toth
 institute: University of Utah
 format:
   revealjs:
-    footer: "Damon Toth - https://damontoth.github.io/facilityepimath-demo/"
+    footer: "These slides: **https://damontoth.github.io/facilityepimath-demo** - The R package: **epiforesite.github.io/facilityepimath**"
     self-contained-math: true
     theme: simple
     slide-number: c
