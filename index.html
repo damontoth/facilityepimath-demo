@@ -414,9 +414,9 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co">#Intervention parameters:</span></span>
-<span id="cb11-2"><a href=""></a>deltaS <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">28</span>  <span class="co">#surveillance detection rate / day</span></span>
+<span id="cb11-2"><a href=""></a>deltaS <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">28</span>  <span class="co">#surveillance detect rate / day</span></span>
 <span id="cb11-3"><a href=""></a>gamD <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">10</span>    <span class="co">#clearance rate / day from </span></span>
-<span id="cb11-4"><a href=""></a>                <span class="co">#decolonizing drug treatment</span></span>
+<span id="cb11-4"><a href=""></a>                  <span class="co">#decolonizing drug treatment</span></span>
 <span id="cb11-5"><a href=""></a></span>
 <span id="cb11-6"><a href=""></a>S <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb11-7"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span>deltaS <span class="sc">-</span> deltaC <span class="sc">-</span> gam, <span class="dv">0</span>, <span class="dv">0</span>),</span>

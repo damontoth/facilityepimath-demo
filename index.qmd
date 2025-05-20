@@ -217,9 +217,9 @@ Consequence of $R_0>1$: high facility prevalence even when importation is infreq
 ::: {.column width="50%"}
 ```{r, echo=TRUE}
 #Intervention parameters:
-deltaS <- 1 / 28  #surveillance detection rate / day
+deltaS <- 1 / 28  #surveillance detect rate / day
 gamD <- 1 / 10    #clearance rate / day from 
-                #decolonizing drug treatment
+                  #decolonizing drug treatment
 
 S <- rbind(c(0, 0), c(0, 0))
 C <- rbind(c(-deltaS - deltaC - gam, 0, 0),
