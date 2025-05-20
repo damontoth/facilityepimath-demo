@@ -154,7 +154,7 @@ $$
 ```{r, echo=TRUE}
 library(facilityepimath)
 #Assumed values for carbapenem-resistant Enterobacterales (CRE):
-gam <- 1/387       #clearance rate (per day)
+gam <- 1 / 387       #clearance rate (per day)
 eps <- 0.5         #contact precaution effectiveness
 
 #Values fit to CRE data from long-term acute care hospitals (LTACH):
@@ -162,9 +162,9 @@ bet <- 0.0510      #transmission rate (per day)
 deltaC <- 0.00845  #progression to clinical detection rate (per day)
 
 S <- 0
-C <- rbind(c(-deltaC-gam,0),c(deltaC,0))
-A <- rbind(1,0)
-transm <- bet*c(1,1-eps)
+C <- rbind(c(-deltaC - gam, 0), c(deltaC, 0))
+A <- rbind(1, 0)
+transm <- bet*c(1, 1 - eps)
 initS <- 1
 
 #Length of stay as a mixed gamma distribution (fit to LTACH):
@@ -173,7 +173,7 @@ rx <- 0.0285   #exponential distribution rate parameter
 rg <- 0.179    #gamma distribution rate parameter
 k <- 5.74      #gamma distribution shape parameter
 
-mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg), shape = c(1,k), deriv)
+mgf <- function(x, deriv = 0) MGFmixedgamma(x, prob = c(px, 1 - px), rate = c(rx, rg), shape = c(1, k), deriv)
 
 facilityR0(S, C, A, transm, initS, mgf)
 ```
@@ -183,9 +183,9 @@ facilityR0(S, C, A, transm, initS, mgf)
 Same inputs as `facilityR0()`, plus recovery matrix $R=(\gamma,0)$, and `init` vector includes $C$ states (importation rate)
 
 ```{r, echo=TRUE}
-R <- cbind(gam,0)
+R <- cbind(gam, 0)
 getEquilibriumFacilityPrevalence <- function(importationRate){
-  init <- c(1-importationRate, importationRate, 0)
+  init <- c(1 - importationRate, importationRate, 0)
   equilib <- facilityeq(S, C, A, R, transm, init, mgf)
   sum(equilib[2:3])
 }
@@ -217,17 +217,17 @@ Consequence of $R_0>1$: high facility prevalence even when importation is infreq
 ::: {.column width="50%"}
 ```{r, echo=TRUE}
 #Intervention parameters:
-deltaS <- 1/28  #surveillance detection rate / day
-gamD <- 1/10    #clearance rate / day from 
+deltaS <- 1 / 28  #surveillance detection rate / day
+gamD <- 1 / 10    #clearance rate / day from 
                 #decolonizing drug treatment
 
-S <- rbind(c(0,0),c(0,0))
-C <- rbind(c(-deltaS-deltaC-gam,0,0),
-           c(deltaS,-deltaC-gamD,0),
-           c(deltaC,deltaC,0))
-A <- rbind(c(1,0),c(0,1-eps),c(0,0))
-transm <- bet*c(1,1-eps,1-eps)
-initS <- c(1,0)
+S <- rbind(c(0, 0), c(0, 0))
+C <- rbind(c(-deltaS - deltaC - gam, 0, 0),
+           c(deltaS, -deltaC - gamD, 0),
+           c(deltaC, deltaC, 0))
+A <- rbind(c(1, 0), c(0, 1 - eps), c(0, 0))
+transm <- bet * c(1, 1 - eps, 1 - eps)
+initS <- c(1, 0)
 
 facilityR0(S, C, A, transm, initS, mgf)
 ```
@@ -261,37 +261,37 @@ A = \left(\begin{matrix} 1 & 0 \\ 0 & 1-\epsilon \\ 0 & 0 \end{matrix}\right), \
     -   Method 4: decrease fraction of high-variance patients (`px`)
 
     ```{r, echo=TRUE}
-    mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px), rate = c(rx, rg), shape = c(1,k), deriv)
+    mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1 - px), rate = c(rx, rg), shape = c(1, k), deriv)
     ```
 
 ## Intervention model: reduce length of stay
 
 ```{r}
-getMu <- function(px, rx, rg) px/rx + (1-px)*k/rg
+getMu <- function(px, rx, rg) px / rx + (1 - px) * k / rg
 
 getR0intervention <- function(px, rx, rg){
 
-  mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1-px),
+  mgf <- function(x, deriv=0) MGFmixedgamma(x, prob = c(px, 1 - px),
                                             rate = c(rx, rg),
-                                            shape = c(1,k), deriv)
+                                            shape = c(1, k), deriv)
 
-  facilityR0(S = 0, C = rbind(c(-deltaC-gam,0),c(deltaC,0)), A = rbind(1,0),
-             transm = bet*c(1,1-eps), initS = 1, mgf = mgf)
+  facilityR0(S = 0, C = rbind(c(-deltaC - gam, 0), c(deltaC, 0)), A = rbind(1, 0),
+             transm = bet*c(1, 1 - eps), initS = 1, mgf = mgf)
 }
 getR0intervention <- Vectorize(getR0intervention)
 
 pts <- 100
-chng <- seq(0,1,len=pts)
-R0rxrg <- matrix(0,pts,1)
-R0rx <- matrix(0,pts,1)
-R0rg <- matrix(0,pts,1)
-R0px <- matrix(0,pts,1)
+chng <- seq(0, 1, len = pts)
+R0rxrg <- matrix(0, pts, 1)
+R0rx <- matrix(0, pts, 1)
+R0rg <- matrix(0, pts, 1)
+R0px <- matrix(0, pts, 1)
 
-murxrg <- matrix(0,pts,1)
-murx <- matrix(0,pts,1)
-murg <- matrix(0,pts,1)
-mus <- matrix(0,pts,1)
-mupx <- matrix(0,pts,1)
+murxrg <- matrix(0, pts, 1)
+murx <- matrix(0, pts, 1)
+murg <- matrix(0, pts, 1)
+mus <- matrix(0, pts, 1)
+mupx <- matrix(0, pts, 1)
 
 rxsBoth <- rx*(1+chng)
 rgsBoth <- rg*(1+chng)

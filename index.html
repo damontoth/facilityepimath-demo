@@ -343,7 +343,7 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(facilityepimath)</span>
 <span id="cb1-2"><a href=""></a><span class="co">#Assumed values for carbapenem-resistant Enterobacterales (CRE):</span></span>
-<span id="cb1-3"><a href=""></a>gam <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">387</span>       <span class="co">#clearance rate (per day)</span></span>
+<span id="cb1-3"><a href=""></a>gam <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">387</span>       <span class="co">#clearance rate (per day)</span></span>
 <span id="cb1-4"><a href=""></a>eps <span class="ot">&lt;-</span> <span class="fl">0.5</span>         <span class="co">#contact precaution effectiveness</span></span>
 <span id="cb1-5"><a href=""></a></span>
 <span id="cb1-6"><a href=""></a><span class="co">#Values fit to CRE data from long-term acute care hospitals (LTACH):</span></span>
@@ -351,9 +351,9 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 <span id="cb1-8"><a href=""></a>deltaC <span class="ot">&lt;-</span> <span class="fl">0.00845</span>  <span class="co">#progression to clinical detection rate (per day)</span></span>
 <span id="cb1-9"><a href=""></a></span>
 <span id="cb1-10"><a href=""></a>S <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1-11"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span>deltaC<span class="sc">-</span>gam,<span class="dv">0</span>),<span class="fu">c</span>(deltaC,<span class="dv">0</span>))</span>
-<span id="cb1-12"><a href=""></a>A <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb1-13"><a href=""></a>transm <span class="ot">&lt;-</span> bet<span class="sc">*</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">-</span>eps)</span>
+<span id="cb1-11"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span>deltaC <span class="sc">-</span> gam, <span class="dv">0</span>), <span class="fu">c</span>(deltaC, <span class="dv">0</span>))</span>
+<span id="cb1-12"><a href=""></a>A <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-13"><a href=""></a>transm <span class="ot">&lt;-</span> bet<span class="sc">*</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="sc">-</span> eps)</span>
 <span id="cb1-14"><a href=""></a>initS <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb1-15"><a href=""></a></span>
 <span id="cb1-16"><a href=""></a><span class="co">#Length of stay as a mixed gamma distribution (fit to LTACH):</span></span>
@@ -362,7 +362,7 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 <span id="cb1-19"><a href=""></a>rg <span class="ot">&lt;-</span> <span class="fl">0.179</span>    <span class="co">#gamma distribution rate parameter</span></span>
 <span id="cb1-20"><a href=""></a>k <span class="ot">&lt;-</span> <span class="fl">5.74</span>      <span class="co">#gamma distribution shape parameter</span></span>
 <span id="cb1-21"><a href=""></a></span>
-<span id="cb1-22"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span><span class="sc">-</span>px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>,k), deriv)</span>
+<span id="cb1-22"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv =</span> <span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span> <span class="sc">-</span> px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>, k), deriv)</span>
 <span id="cb1-23"><a href=""></a></span>
 <span id="cb1-24"><a href=""></a><span class="fu">facilityR0</span>(S, C, A, transm, initS, mgf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -374,9 +374,9 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 <h2>Equilibrium calculation: <code>facilityeq()</code></h2>
 <p>Same inputs as <code>facilityR0()</code>, plus recovery matrix <span class="math inline">\(R=(\gamma,0)\)</span>, and <code>init</code> vector includes <span class="math inline">\(C\)</span> states (importation rate)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(gam,<span class="dv">0</span>)</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>R <span class="ot">&lt;-</span> <span class="fu">cbind</span>(gam, <span class="dv">0</span>)</span>
 <span id="cb3-2"><a href=""></a>getEquilibriumFacilityPrevalence <span class="ot">&lt;-</span> <span class="cf">function</span>(importationRate){</span>
-<span id="cb3-3"><a href=""></a>  init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">-</span>importationRate, importationRate, <span class="dv">0</span>)</span>
+<span id="cb3-3"><a href=""></a>  init <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span> <span class="sc">-</span> importationRate, importationRate, <span class="dv">0</span>)</span>
 <span id="cb3-4"><a href=""></a>  equilib <span class="ot">&lt;-</span> <span class="fu">facilityeq</span>(S, C, A, R, transm, init, mgf)</span>
 <span id="cb3-5"><a href=""></a>  <span class="fu">sum</span>(equilib[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span>
 <span id="cb3-6"><a href=""></a>}</span>
@@ -414,17 +414,17 @@ A = \left(\begin{matrix} 1 \\ 0 \end{matrix}\right), \quad
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co">#Intervention parameters:</span></span>
-<span id="cb11-2"><a href=""></a>deltaS <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">28</span>  <span class="co">#surveillance detection rate / day</span></span>
-<span id="cb11-3"><a href=""></a>gamD <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">10</span>    <span class="co">#clearance rate / day from </span></span>
+<span id="cb11-2"><a href=""></a>deltaS <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">28</span>  <span class="co">#surveillance detection rate / day</span></span>
+<span id="cb11-3"><a href=""></a>gamD <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">10</span>    <span class="co">#clearance rate / day from </span></span>
 <span id="cb11-4"><a href=""></a>                <span class="co">#decolonizing drug treatment</span></span>
 <span id="cb11-5"><a href=""></a></span>
-<span id="cb11-6"><a href=""></a>S <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb11-7"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span>deltaS<span class="sc">-</span>deltaC<span class="sc">-</span>gam,<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb11-8"><a href=""></a>           <span class="fu">c</span>(deltaS,<span class="sc">-</span>deltaC<span class="sc">-</span>gamD,<span class="dv">0</span>),</span>
-<span id="cb11-9"><a href=""></a>           <span class="fu">c</span>(deltaC,deltaC,<span class="dv">0</span>))</span>
-<span id="cb11-10"><a href=""></a>A <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span><span class="sc">-</span>eps),<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb11-11"><a href=""></a>transm <span class="ot">&lt;-</span> bet<span class="sc">*</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span><span class="sc">-</span>eps,<span class="dv">1</span><span class="sc">-</span>eps)</span>
-<span id="cb11-12"><a href=""></a>initS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb11-6"><a href=""></a>S <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb11-7"><a href=""></a>C <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="sc">-</span>deltaS <span class="sc">-</span> deltaC <span class="sc">-</span> gam, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb11-8"><a href=""></a>           <span class="fu">c</span>(deltaS, <span class="sc">-</span>deltaC <span class="sc">-</span> gamD, <span class="dv">0</span>),</span>
+<span id="cb11-9"><a href=""></a>           <span class="fu">c</span>(deltaC, deltaC, <span class="dv">0</span>))</span>
+<span id="cb11-10"><a href=""></a>A <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span> <span class="sc">-</span> eps), <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb11-11"><a href=""></a>transm <span class="ot">&lt;-</span> bet <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="sc">-</span> eps, <span class="dv">1</span> <span class="sc">-</span> eps)</span>
+<span id="cb11-12"><a href=""></a>initS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb11-13"><a href=""></a></span>
 <span id="cb11-14"><a href=""></a><span class="fu">facilityR0</span>(S, C, A, transm, initS, mgf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -459,7 +459,7 @@ A = \left(\begin{matrix} 1 &amp; 0 \\ 0 &amp; 1-\epsilon \\ 0 &amp; 0 \end{matri
 <li>Method 4: decrease fraction of high-variance patients (<code>px</code>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span><span class="sc">-</span>px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>,k), deriv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>mgf <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">deriv=</span><span class="dv">0</span>) <span class="fu">MGFmixedgamma</span>(x, <span class="at">prob =</span> <span class="fu">c</span>(px, <span class="dv">1</span> <span class="sc">-</span> px), <span class="at">rate =</span> <span class="fu">c</span>(rx, rg), <span class="at">shape =</span> <span class="fu">c</span>(<span class="dv">1</span>, k), deriv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul>
 </section>
