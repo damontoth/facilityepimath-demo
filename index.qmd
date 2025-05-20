@@ -153,9 +153,9 @@ $$
 
 ```{r, echo=TRUE}
 library(facilityepimath)
-#Assumed values:
-gam <- 1/387 #clearance rate (per day)
-eps <- 0.5 #contact precaution effectiveness
+#Assumed values for carbapenem-resistant Enterobacterales (CRE):
+gam <- 1/387       #clearance rate (per day)
+eps <- 0.5         #contact precaution effectiveness
 
 #Values fit to CRE data from long-term acute care hospitals (LTACH):
 bet <- 0.0510      #transmission rate (per day)
